@@ -1,0 +1,36 @@
+{
+  "name": "visor-capacitaciones",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "server": "node server/server.js",
+    "server:dev": "nodemon server/server.js",
+    "build": "vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/server": "^1.6.1",
+    "@supabase/supabase-js": "^2.116.0",
+    "axios": "^1.20.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.23.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "nodemon": "^3.1.14",
+    "oxlint": "^1.81.0",
+    "sharp": "^0.35.4",
+    "vite": "^8.3.0"
+  }
+}
