@@ -1,6 +1,6 @@
 import { capacitaciones } from "../data/capacitaciones";
 
-function Home({ onSelect }) {
+function Home({ onSelect, onAdmin }) {
   const totalCapacitaciones = capacitaciones.length;
 
   const totalDiapositivas = capacitaciones.reduce(
@@ -392,7 +392,14 @@ function Home({ onSelect }) {
     Todos los derechos reservados.
   </span>
 
-  <a href="/admin" className="home__admin-link" > <span>Acceso administrativo</span> <strong>→</strong> </a>
+  <button
+  type="button"
+  className="home__admin-link"
+  onClick={onAdmin}
+>
+  <span>Acceso administrativo</span>
+  <strong>→</strong>
+</button>
 </div>
       </footer>
     </main>

@@ -20,30 +20,41 @@ import {
 
 function App() {
   /*
+   * VISTA ACTUAL
+   *
+   * home       → página principal
+   * adminLogin → login administrativo
+   * admin      → panel administrativo
+   */
+  const [currentView, setCurrentView] =
+    useState("home");
+
+  /*
    * PROTECCIÓN DEL PANEL ADMINISTRATIVO
    */
-  if (window.location.pathname === "/admin") {
-    const autenticado = administradorAutenticado();
-
-    if (!autenticado) {
-      return (
-        <AdminLogin
-          onLogin={() => {
-            window.location.reload();
-          }}
-        />
-      );
+  const handleAdminAccess = () => {
+    if (administradorAutenticado()) {
+      setCurrentView("admin");
+      return;
     }
 
-    return (
-      <Admin
-        onLogout={() => {
-          logoutAdministrador();
-          window.location.reload();
-        }}
-      />
-    );
-  }
+    setCurrentView("adminLogin");
+  };
+
+  /*
+   * LOGIN ADMINISTRATIVO CORRECTO
+   */
+  const handleAdminLogin = () => {
+    setCurrentView("admin");
+  };
+
+  /*
+   * CERRAR SESIÓN ADMINISTRATIVA
+   */
+  const handleAdminLogout = () => {
+    logoutAdministrador();
+    setCurrentView("home");
+  };
 
   /*
    * FLUJO PRINCIPAL DEL VISOR
@@ -149,6 +160,28 @@ function App() {
   };
 
   /*
+   * LOGIN ADMINISTRATIVO
+   */
+  if (currentView === "adminLogin") {
+    return (
+      <AdminLogin
+        onLogin={handleAdminLogin}
+      />
+    );
+  }
+
+  /*
+   * PANEL ADMINISTRATIVO
+   */
+  if (currentView === "admin") {
+    return (
+      <Admin
+        onLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  /*
    * FORMULARIO DE REGISTRO
    */
   if (
@@ -189,6 +222,7 @@ function App() {
   return (
     <Home
       onSelect={handleSelectTraining}
+      onAdmin={handleAdminAccess}
     />
   );
 }
